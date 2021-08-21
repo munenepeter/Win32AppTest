@@ -9,7 +9,7 @@
 
 /*  Declare Windows procedure  */
 LRESULT CALLBACK WindowProcedure (HWND, UINT, WPARAM, LPARAM);
-HWND textfield;
+HWND textfield, button;
 
 /*  Make the class name into a global variable  */
 TCHAR szClassName[ ] = _T("CodeBlocksWindowsApp");
@@ -89,6 +89,11 @@ LRESULT CALLBACK WindowProcedure (HWND hwnd, UINT message, WPARAM wParam, LPARAM
          WS_VISIBLE | WS_CHILD,
          20, 20, 300,25,
          hwnd,NULL, NULL, NULL);
+         
+         button = CreateWindow("BUTTON", "First Button",
+                               WS_VISIBLE | WS_CHILD | WS_BORDER,
+                               20,50,200,20, hwnd,NULL, NULL, NULL);
+
         break;
         case WM_DESTROY:
             PostQuitMessage (0);       /* send a WM_QUIT to the message queue */
