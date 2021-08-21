@@ -1,0 +1,8 @@
+# depslib dependency file v1.0
+1629568686 source:c:\users\munene\desktop\bored projects\win32guitest\win32guitest\bankacc.cpp
+	<iostream>
+
+1629571392 source:c:\users\munene\desktop\bored projects\win32guitest\win32guitest\main.cpp
+	<tchar.h>
+	<windows.h>
+

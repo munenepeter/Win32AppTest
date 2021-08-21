@@ -7,11 +7,17 @@
 #include <tchar.h>
 #include <windows.h>
 
+
+
+
+
 /*  Declare Windows procedure  */
 LRESULT CALLBACK WindowProcedure (HWND, UINT, WPARAM, LPARAM);
 //define handles for the button & textfield
-HWND textfield, button, textInput, inputLabel;
-
+HWND textfield, button, textInput, inputLabel,
+brandName, amountLabel, actualAmount,
+depositLabel, depositInput, withdrawalLabel,
+withdrawalInput;
 /*  Make the class name into a global variable  */
 TCHAR szClassName[ ] = _T("CodeBlocksWindowsApp");
 char inputText[20];
@@ -76,7 +82,42 @@ int WINAPI WinMain (HINSTANCE hThisInstance,
     /* The program return-value is 0 - The value that PostQuitMessage() gave */
     return messages.wParam;
 }
+ void CreateUserInterface(HWND brandName,HWND hwnd, HWND amountLabel, HWND actualAmount, HWND depositLabel, HWND depositInput, HWND withdrawalLabel, HWND withdrawalInput){
 
+
+   brandName = CreateWindow("STATIC","Peter Bank",
+                            WS_VISIBLE | WS_CHILD | WS_BORDER,
+                            80, 20, 400,25,
+                            hwnd,NULL, NULL, NULL);
+
+   amountLabel = CreateWindow("STATIC","Amount",
+                            WS_VISIBLE | WS_CHILD | WS_BORDER,
+                            20, 60, 200,25,
+                            hwnd,NULL, NULL, NULL);
+   actualAmount = CreateWindow("STATIC","Ksh0.0",
+                            WS_VISIBLE | WS_CHILD | WS_BORDER,
+                            110, 60, 100,25,
+                            hwnd,NULL, NULL, NULL);
+
+   depositLabel = CreateWindow("STATIC","Deposit",
+                            WS_VISIBLE | WS_CHILD | WS_BORDER,
+                            20, 80, 200,25,
+                            hwnd,NULL, NULL, NULL);
+   depositInput = CreateWindow("EDIT","",
+                            WS_VISIBLE | WS_CHILD | WS_BORDER,
+                            110, 80, 100,25,
+                            hwnd,NULL, NULL, NULL);
+
+   withdrawalLabel = CreateWindow("STATIC","Withdraw",
+                            WS_VISIBLE | WS_CHILD | WS_BORDER,
+                            20, 100, 200,25,
+                            hwnd,NULL, NULL, NULL);
+   withdrawalInput = CreateWindow("EDIT","",
+                            WS_VISIBLE | WS_CHILD | WS_BORDER,
+                            110, 100, 100,25,
+                            hwnd,NULL, NULL, NULL);
+
+}
 
 /*  This function is called by the Windows function DispatchMessage()  */
 
@@ -85,33 +126,35 @@ LRESULT CALLBACK WindowProcedure (HWND hwnd, UINT message, WPARAM wParam, LPARAM
     switch (message)                  /* handle the messages */
     {
         case WM_CREATE:
+         CreateUserInterface(brandName,hwnd, amountLabel,actualAmount,
+                            depositLabel,depositInput,
+                            withdrawalLabel, withdrawalInput);
+        // //create a text field
+        //  textfield = CreateWindow("STATIC","Hello World",
+        //                           WS_VISIBLE | WS_CHILD,
+        //                           20, 20, 300,25,
+        //                           hwnd,NULL, NULL, NULL);
+        //  //create a button
+        //  button = CreateWindow("BUTTON", "First Button",
+        //                        WS_VISIBLE | WS_CHILD | WS_BORDER,
+        //                        20,50,200,20,
+        //                        hwnd,(HMENU) 1, NULL, NULL);
 
-        //create a text field
-         textfield = CreateWindow("STATIC","Hello World",
-                                  WS_VISIBLE | WS_CHILD,
-                                  20, 20, 300,25,
-                                  hwnd,NULL, NULL, NULL);
-         //create a button
-         button = CreateWindow("BUTTON", "First Button",
-                               WS_VISIBLE | WS_CHILD | WS_BORDER,
-                               20,50,200,20,
-                               hwnd,(HMENU) 1, NULL, NULL);
+        // inputLabel = CreateWindow("STATIC","Type in something",
+        //                           WS_VISIBLE | WS_CHILD,
+        //                           80, 80, 300,25,
+        //                           hwnd,NULL, NULL, NULL);
 
-        inputLabel = CreateWindow("STATIC","Type in something",
-                                  WS_VISIBLE | WS_CHILD,
-                                  80, 80, 300,25,
-                                  hwnd,NULL, NULL, NULL);
-
-          //create a text input
-         textInput = CreateWindow("EDIT", "",
-                                  WS_VISIBLE | WS_CHILD | WS_BORDER,
-                                  20,100,400,20,
-                                  hwnd, NULL, NULL,NULL);
-          //create button to handle the input
-         CreateWindow("BUTTON", "GO",
-                                    WS_VISIBLE |WS_BORDER |WS_CHILD,
-                                    420,100,50,20,
-                                    hwnd, (HMENU) 2, NULL, NULL);
+        //   //create a text input
+        //  textInput = CreateWindow("EDIT", "",
+        //                           WS_VISIBLE | WS_CHILD | WS_BORDER,
+        //                           20,100,400,20,
+        //                           hwnd, NULL, NULL,NULL);
+        //   //create button to handle the input
+        //  CreateWindow("BUTTON", "GO",
+        //                             WS_VISIBLE |WS_BORDER |WS_CHILD,
+        //                             420,100,50,20,
+        //                             hwnd, (HMENU) 2, NULL, NULL);
 
         break;
         //this case handles the action of clicking the buttons
