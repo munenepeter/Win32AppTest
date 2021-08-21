@@ -9,7 +9,8 @@
 
 /*  Declare Windows procedure  */
 LRESULT CALLBACK WindowProcedure (HWND, UINT, WPARAM, LPARAM);
-HWND textfield, button;
+//define handles for the button & textfield
+HWND textfield, button, textInput, inputLabel;
 
 /*  Make the class name into a global variable  */
 TCHAR szClassName[ ] = _T("CodeBlocksWindowsApp");
@@ -86,25 +87,36 @@ LRESULT CALLBACK WindowProcedure (HWND hwnd, UINT message, WPARAM wParam, LPARAM
         case WM_CREATE:
 
         //create a text field
-         textfield = CreateWindow("STATIC",
-                                    "Hello World",
-                                    WS_VISIBLE | WS_CHILD,
-                                    20, 20, 300,25,
-                                    hwnd,NULL, NULL, NULL);
+         textfield = CreateWindow("STATIC","Hello World",
+                                  WS_VISIBLE | WS_CHILD,
+                                  20, 20, 300,25,
+                                  hwnd,NULL, NULL, NULL);
          //create a button
          button = CreateWindow("BUTTON", "First Button",
                                WS_VISIBLE | WS_CHILD | WS_BORDER,
-                               20,50,200,20, hwnd,(HMENU) 1, NULL, NULL);
+                               20,50,200,20,
+                               hwnd,(HMENU) 1, NULL, NULL);
+
+        inputLabel = CreateWindow("STATIC","Type in something",
+                                  WS_VISIBLE | WS_CHILD,
+                                  20, 80, 400,25,
+                                  hwnd,NULL, NULL, NULL);
+
+          //create a text input
+         textInput = CreateWindow("EDIT", "",
+                                  WS_VISIBLE | WS_CHILD | WS_BORDER,
+                                  20,100,400,20,
+                                  hwnd, NULL, NULL,NULL);
 
         break;
-        //this case handles the action of clickin the buttons
+        //this case handles the action of clicking the buttons
         case WM_COMMAND:
           switch(LOWORD(wParam)){
-           //this case handles the action of clickin the button i.e button with the value of one
+           //this case handles the action of clicking the button i.e button with the value of one
               case  1:
               //this function makes a sound
                ::MessageBeep(MB_ICONERROR);
-              //this function creates a dialogox
+              //this function creates a dialogbox
                ::MessageBox(hwnd,"Clicked", "Button was Clicked",MB_OK);
                break;
 
