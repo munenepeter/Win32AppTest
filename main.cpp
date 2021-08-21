@@ -99,7 +99,7 @@ LRESULT CALLBACK WindowProcedure (HWND hwnd, UINT message, WPARAM wParam, LPARAM
 
         inputLabel = CreateWindow("STATIC","Type in something",
                                   WS_VISIBLE | WS_CHILD,
-                                  20, 80, 400,25,
+                                  80, 80, 300,25,
                                   hwnd,NULL, NULL, NULL);
 
           //create a text input
@@ -107,6 +107,11 @@ LRESULT CALLBACK WindowProcedure (HWND hwnd, UINT message, WPARAM wParam, LPARAM
                                   WS_VISIBLE | WS_CHILD | WS_BORDER,
                                   20,100,400,20,
                                   hwnd, NULL, NULL,NULL);
+          //create button to handle the input
+         CreateWindow("BUTTON", "GO",
+                                    WS_VISIBLE |WS_BORDER |WS_CHILD,
+                                    420,100,50,20,
+                                    hwnd, (HMENU) 2, NULL, NULL);
 
         break;
         //this case handles the action of clicking the buttons
@@ -119,6 +124,9 @@ LRESULT CALLBACK WindowProcedure (HWND hwnd, UINT message, WPARAM wParam, LPARAM
               //this function creates a dialogbox
                ::MessageBox(hwnd,"Clicked", "Button was Clicked",MB_OK);
                break;
+              case 2:
+
+                break;
 
           }
 
