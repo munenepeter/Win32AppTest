@@ -14,7 +14,7 @@ HWND textfield, button, textInput, inputLabel;
 
 /*  Make the class name into a global variable  */
 TCHAR szClassName[ ] = _T("CodeBlocksWindowsApp");
-
+char inputText[20];
 int WINAPI WinMain (HINSTANCE hThisInstance,
                      HINSTANCE hPrevInstance,
                      LPSTR lpszArgument,
@@ -125,6 +125,12 @@ LRESULT CALLBACK WindowProcedure (HWND hwnd, UINT message, WPARAM wParam, LPARAM
                ::MessageBox(hwnd,"Clicked", "Button was Clicked",MB_OK);
                break;
               case 2:
+                  int getInputStatus = 0;
+                  getInputStatus = GetWindowText(textInput, &inputText[0], 20);
+                  if(getInputStatus == 0){
+                    //TODO
+                  }
+                  ::MessageBox(hwnd,inputText,inputText,MB_OK);
 
                 break;
 
