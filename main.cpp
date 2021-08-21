@@ -89,10 +89,20 @@ LRESULT CALLBACK WindowProcedure (HWND hwnd, UINT message, WPARAM wParam, LPARAM
          WS_VISIBLE | WS_CHILD,
          20, 20, 300,25,
          hwnd,NULL, NULL, NULL);
-         
+
          button = CreateWindow("BUTTON", "First Button",
                                WS_VISIBLE | WS_CHILD | WS_BORDER,
-                               20,50,200,20, hwnd,NULL, NULL, NULL);
+                               20,50,200,20, hwnd,(HMENU) 1, NULL, NULL);
+
+        break;
+        case WM_COMMAND:
+          switch(LOWORD(wParam)){
+              case  1:
+               ::MessageBeep(MB_ICONERROR);
+               ::MessageBox(hwnd,"Clicked", "Button was Clicked",MB_OK);
+               break;
+
+          }
 
         break;
         case WM_DESTROY:
