@@ -84,21 +84,27 @@ LRESULT CALLBACK WindowProcedure (HWND hwnd, UINT message, WPARAM wParam, LPARAM
     switch (message)                  /* handle the messages */
     {
         case WM_CREATE:
-         textfield = CreateWindow("STATIC",
-         "Hello World",
-         WS_VISIBLE | WS_CHILD,
-         20, 20, 300,25,
-         hwnd,NULL, NULL, NULL);
 
+        //create a text field
+         textfield = CreateWindow("STATIC",
+                                    "Hello World",
+                                    WS_VISIBLE | WS_CHILD,
+                                    20, 20, 300,25,
+                                    hwnd,NULL, NULL, NULL);
+         //create a button
          button = CreateWindow("BUTTON", "First Button",
                                WS_VISIBLE | WS_CHILD | WS_BORDER,
                                20,50,200,20, hwnd,(HMENU) 1, NULL, NULL);
 
         break;
+        //this case handles the action of clickin the buttons
         case WM_COMMAND:
           switch(LOWORD(wParam)){
+           //this case handles the action of clickin the button i.e button with the value of one
               case  1:
+              //this function makes a sound
                ::MessageBeep(MB_ICONERROR);
+              //this function creates a dialogox
                ::MessageBox(hwnd,"Clicked", "Button was Clicked",MB_OK);
                break;
 
