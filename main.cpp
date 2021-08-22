@@ -13,14 +13,24 @@
 
 /*  Declare Windows procedure  */
 LRESULT CALLBACK WindowProcedure (HWND, UINT, WPARAM, LPARAM);
+
+void addMenu(HWND hwnd);
 //define handles for the button & textfield
 HWND textfield, button, textInput, inputLabel,
 brandName, amountLabel, actualAmount,
 depositLabel, depositInput, withdrawalLabel,
 withdrawalInput;
+
+char inputText[20];
+
 /*  Make the class name into a global variable  */
 TCHAR szClassName[ ] = _T("CodeBlocksWindowsApp");
-char inputText[20];
+
+
+
+
+
+
 int WINAPI WinMain (HINSTANCE hThisInstance,
                      HINSTANCE hPrevInstance,
                      LPSTR lpszArgument,
@@ -118,6 +128,14 @@ int WINAPI WinMain (HINSTANCE hThisInstance,
                             hwnd,NULL, NULL, NULL);
 
 }
+ void addMenu(HWND hwnd){
+
+       HMENU hMenu = CreateMenu();
+
+        AppendMenu(hMenu,MF_STRING,NULL,"File");
+
+        SetMenu(hwnd,hMenu);
+    }
 
 /*  This function is called by the Windows function DispatchMessage()  */
 
@@ -129,33 +147,7 @@ LRESULT CALLBACK WindowProcedure (HWND hwnd, UINT message, WPARAM wParam, LPARAM
          CreateUserInterface(brandName,hwnd, amountLabel,actualAmount,
                             depositLabel,depositInput,
                             withdrawalLabel, withdrawalInput);
-        // //create a text field
-        //  textfield = CreateWindow("STATIC","Hello World",
-        //                           WS_VISIBLE | WS_CHILD,
-        //                           20, 20, 300,25,
-        //                           hwnd,NULL, NULL, NULL);
-        //  //create a button
-        //  button = CreateWindow("BUTTON", "First Button",
-        //                        WS_VISIBLE | WS_CHILD | WS_BORDER,
-        //                        20,50,200,20,
-        //                        hwnd,(HMENU) 1, NULL, NULL);
-
-        // inputLabel = CreateWindow("STATIC","Type in something",
-        //                           WS_VISIBLE | WS_CHILD,
-        //                           80, 80, 300,25,
-        //                           hwnd,NULL, NULL, NULL);
-
-        //   //create a text input
-        //  textInput = CreateWindow("EDIT", "",
-        //                           WS_VISIBLE | WS_CHILD | WS_BORDER,
-        //                           20,100,400,20,
-        //                           hwnd, NULL, NULL,NULL);
-        //   //create button to handle the input
-        //  CreateWindow("BUTTON", "GO",
-        //                             WS_VISIBLE |WS_BORDER |WS_CHILD,
-        //                             420,100,50,20,
-        //                             hwnd, (HMENU) 2, NULL, NULL);
-
+         addMenu(hwnd);
         break;
         //this case handles the action of clicking the buttons
         case WM_COMMAND:
@@ -186,6 +178,7 @@ LRESULT CALLBACK WindowProcedure (HWND hwnd, UINT message, WPARAM wParam, LPARAM
         default:                      /* for messages that we don't deal with */
             return DefWindowProc (hwnd, message, wParam, lParam);
     }
+
 
     return 0;
 }
